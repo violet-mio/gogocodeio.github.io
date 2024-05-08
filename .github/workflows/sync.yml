@@ -23,5 +23,5 @@ jobs:
           git remote add upstream https://github.com/gogocodeio/gogocodeio.github.io.git
           git fetch upstream
           git checkout gh-pages
-          git merge upstream/gh-pages --no-edit
+          git merge upstream/gh-pages --allow-unrelated-histories --no-edit
           git push origin gh-pages
