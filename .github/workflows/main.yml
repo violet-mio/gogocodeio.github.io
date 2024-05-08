@@ -1,0 +1,26 @@
+name: Sync Fork with Upstream
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天 UTC 时间 00:00 执行一次
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config --global user.email "LastStartDust@gmail.com"
+          git config --global user.name "violet-mio"
+
+      - name: Sync with upstream
+        run: |
+          git remote add upstream https://github.com/gogocodeio/gogocodeio.github.io.git
+          git fetch upstream
+          git checkout gh-pages
+          git merge upstream/gh-pages --no-edit
+          git push origin gh-pages
